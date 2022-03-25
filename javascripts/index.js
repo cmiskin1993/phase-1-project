@@ -1,4 +1,7 @@
 /** Globes */
+const baseUrl = 'http://localhost:3000';
+
+let Recipes = [];
 
 /** NODE Getters */
 const mainDiv = () => document.getElementById('main');
@@ -65,24 +68,30 @@ const renderChooseMeal = () => {
 }
 
 /** EVENTS */
+
+const loadRecipes = () =>{
+    fetch(baseUrl + '/Recipes')
+    .then(resp => resp.json())
+    .then(data => Recipes = data)
+}
 const homePageLinkEvent = () => {
     homePageLink ().addEventListener('click', (e) => {
         e.preventDefault();
         renderHomePage();
-        })
-    }
+    })
+}
 const favoritesLinkEvent = () => {
     favoritesLink ().addEventListener('click', (e) => {
         e.preventDefault
         renderFavoritesPage();
-        })
-    }
+    })
+}
 const chooseMealLinkEvent = () => {
     chooseMealLink ().addEventListener('click', (e) => {
         e.preventDefault
         renderChooseMeal();
-        })
-    }
+    })
+}
 
 
 /**************/
