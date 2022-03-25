@@ -1,0 +1,21 @@
+{
+    "Recipes": [
+        {
+            "id": 1,
+            "meal": "Fish Tacos"
+        },
+        {
+            "id": 2,
+            "meal": "Harvest Bowl"
+        },
+        {
+            "id": 3,
+            "meal": "Acai Bowl"
+        },
+        {
+            "id": 4,
+            "meal": "Cauliflower Pizza"
+        }
+
+    ]
+}
