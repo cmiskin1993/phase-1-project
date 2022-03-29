@@ -1,4 +1,5 @@
 # Phase 1 Project Build
+Carrie Nestel (Miskin) phase 1 project 
 
 ### Overview
 This is to detail the project from a user perspective.

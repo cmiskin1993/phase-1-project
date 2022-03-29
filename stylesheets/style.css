@@ -118,15 +118,37 @@ h3{
 }
   
   /* Style the counter cards */
-  .card {
+  .card2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: center;
     background-color: #f1f1f1;
 }
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(65, 4, 145, 0.2);
+.card2:hover:hover {
+    box-shadow: 0 8px 16px 0 rgba(65, 4, 145, 0.247);
 }
+
+/* Meal Button*/
+.button {
+    font-family: "Champagne & Limousines";
+    font-weight: bold;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+  .button {
+    border-color: rgb(65, 4, 145);
+    color: rgb(65, 4, 145);
+}
+  .button:hover {
+    background: linear-gradient(to bottom right, rgb(65, 4, 145), rgb(187, 12, 158));
+    color: white;
+  }
+  
 
 
 /* footer */
