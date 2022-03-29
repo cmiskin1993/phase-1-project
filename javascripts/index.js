@@ -111,7 +111,7 @@ function createRecipe(event) {
 // Fetch Request
 
 function getRecipe() {
-  fetch("http://localhost:3000/Recipes") // returns a promise
+  fetch("http://localhost:3000/Recipes")
     .then(function (response) {
       return response.json();
     })
