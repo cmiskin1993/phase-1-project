@@ -1,12 +1,8 @@
-/** Globes */
-// const baseUrl = 'http://localhost:3000';
-
-// let Recipes = [];
 
 /** NODE Getters */
 const mainDiv = () => document.getElementById('main');
 const homePageLink = () => document.getElementById('logo');
-const favoritesLink = () => document.getElementById('meals-link');
+const recipesLink = () => document.getElementById('recipes-link');
 const chooseMealLink = () => document.getElementById('choose-meal-link');
 
 /** Templates */
@@ -19,39 +15,20 @@ const homePageTemplate = () => {
             We take the stress <br> out of cooking
             </h1> `
 }
-const mealsTemplate = () => {
-    return `<h2>My Recipes</h2>
-    <div class="recipe-cards" id="recipe-cards">
-    <div class="row">
-    <div class="column">
-      <div class="card2">
-          <img src="Images/190307-fish-tacos-112-1553283299.jpg" alt="fish-tacos" style="width:100%">
-        <h3>Fish Tacos</h3>
-      </div>
-    </div>
-  
-    <div class="column">
-      <div class="card2">
-          <img src="Images/Harvest-Bowl-5.jpg" alt="harvest-bowl" style="width:100%">
-        <h3>Harvest Bowl</h3>
-      </div>
-    </div>
-    
-    <div class="column">
-      <div class="card2">
-          <img src="Images/acai-smoothie-recipe-homemade-acai-bowl.jpg" alt="acai-bowl" style="width:100%">
-        <h3>Acai Bowl</h3>
-      </div>
-    </div>
-    
-    <div class="column">
-      <div class="card2">
-          <img src="Images/delish-191908-cauliflower-pizza-0390-landscape-pf-1568654348.jpg" alt="cauliflower-pizza" style="width:100%">
-        <h3>Cauliflower Pizza</h3>
-      </div>
-    </div>
+const recipesTemplate = () => {
+    return `<h2>My Recipes</h2> 
+    <div id="recipe-container">
+    <form id="recipe-form">
+      <label><strong>Meal: </strong></label>
+      <input type="text" id="meal-input" />
+      <label><strong>Image: </strong></label>
+      <input type="text" id="img-input" />
+      <input type="submit" value="Submit" />
+    </form>
   </div>
-      `
+  <div id="recipe-container"></div>
+  <div id="comments-form"></div>
+  <div id="collection-comments"></div>`
 }
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
@@ -62,8 +39,8 @@ const chooseMealTemplate = () => {
 const renderHomePage = () => {
     mainDiv().innerHTML = homePageTemplate();
 }
-const renderMealsPage = () => {
-    mainDiv().innerHTML = mealsTemplate();
+const renderRecipesPage = () => {
+    mainDiv().innerHTML = recipesTemplate();
 }
 const renderChooseMeal = () => {
     mainDiv().innerHTML = chooseMealTemplate();
@@ -72,22 +49,16 @@ const renderChooseMeal = () => {
 
 /** EVENTS */
 
-// const loadRecipes = () => {
-//     fetch(baseUrl + '/Recipes')
-//     .then(resp => resp.json())
-//     .then(data => Recipes = data)
-// }
 const homePageLinkEvent = () => {
     homePageLink ().addEventListener('click', (e) => {
         e.preventDefault();
         renderHomePage();
     })
 }
-const mealsLinkEvent = () => {
-    favoritesLink ().addEventListener('click', (e) => {
+const recipesLinkEvent = () => {
+    recipesLink ().addEventListener('click', (e) => {
         e.preventDefault
-        // loadRecipes();
-        renderMealsPage();
+        renderRecipesPage();
     })
 }
 const chooseMealLinkEvent = () => {
@@ -101,7 +72,61 @@ const button = () => {
   document.getElementById("button");
 }
 
+
+//Form
+const recipeContainer = document.getElementById("recipe-container");
+const recipeForm = document.getElementById("recipe-form");
+
+function renderRecipe(recipes) {
+  const recipeCard = document.createElement("div");
+  recipeCard.id = `${recipes.id}`;
+  recipeCard.className = "recipe-card";
+
+  const recipeImg = document.createElement("img");
+  recipeImg.src = recipes.image;
+  recipeImg.alt = `${recipes.name} image`;
+
+  const recipeName = document.createElement("h3");
+  recipeName.textContent = recipes.name;
+
+
+  recipeCard.append(recipeImg, recipeName);
+  recipeContainer.appendChild(recipeCard);
+}
+
+function createRecipe(event) {
+  event.preventDefault();
+  const meal = document.querySelector("#meal-input").value;
+  const img = event.target.querySelector("#img-input").value
+
+  const recipe = {
+    meal: meal,
+    img: img,
+    id: 1, 
+  };
+  renderRecipe(recipe);
+  recipeForm.reset();
+}
+
 // Fetch Request
+
+function getRecipe() {
+  fetch("http://localhost:3000/Recipes") // returns a promise
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (recipeArray) {
+      recipeArray.forEach(function (recipe) {
+        renderRecipe(recipe);
+      });
+    });
+}
+function init() {
+  getRecipe();
+  recipeForm.addEventListener("submit", createRecipe);
+}
+init();
+
 
 
 
@@ -120,28 +145,7 @@ const button = () => {
 document.addEventListener('DOMContentLoaded', () => {
     renderHomePage();
     homePageLinkEvent();
-    mealsLinkEvent();
+    recipesLinkEvent();
     chooseMealLinkEvent();
 })
-
-//DOM Render
-
-const renderRecipeCard = (recipes) => {
-  let card = document.createElement('li')
-  card.className = 'card'
-  card.innerHTML = recipes
-document.querySelector('#recipe-cards').appendChild(card)
-}
-
-const getRecipeCards = () => {
-  fetch('http://localhost:3000/Recipes')
-  .then(res => res.json())
-  .then(recipeData => recipeData.forEach(recipes => renderRecipeCard(recipes)))
-  }
-
-function initialize() {
-  getRecipeCards()
-
-}
-initialize()
 
