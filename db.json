@@ -24,6 +24,11 @@
             "id": 5,
             "meal": "Pasta",
             "image": "Images/download.jpeg"
+        },
+        {
+            "id": 6,
+            "meal": "Pasta",
+            "image": "Images/download (1).jpeg"
         }
     ]
 }
