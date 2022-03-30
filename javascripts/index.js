@@ -4,6 +4,9 @@ const mainDiv = () => document.getElementById('main');
 const homePageLink = () => document.getElementById('logo');
 const recipesLink = () => document.getElementById('recipes-link');
 const chooseMealLink = () => document.getElementById('choose-meal-link');
+const recipeForm = () => document.getElementById('recipe-form');
+const recipeContainer = () => document.getElementById('recipe-container');
+
 
 /** Templates */
 const homePageTemplate = () => {
@@ -40,6 +43,8 @@ const renderHomePage = () => {
 }
 const renderRecipesPage = () => {
     mainDiv().innerHTML = recipesTemplate();
+    recipeForm.addEventListener("submit", createRecipe); 
+
 }
 const renderChooseMeal = () => {
     mainDiv().innerHTML = chooseMealTemplate();
@@ -72,9 +77,7 @@ const button = () => {
 }
 
 
-//Form
-const recipeContainer = document.getElementById("recipe-container");
-const recipeForm = document.getElementById("recipe-form");
+/** FORM */
 
 function renderRecipe(recipes) {
   const recipeCard = document.createElement("div");
@@ -90,7 +93,7 @@ function renderRecipe(recipes) {
 
 
   recipeCard.append(recipeImg, recipeName);
-  recipeContainer.appendChild(recipeCard);
+  recipeContainer().appendChild(recipes);
 }
 
 function createRecipe(event) {
@@ -105,9 +108,10 @@ function createRecipe(event) {
 
   renderRecipe(recipe);
   recipeForm.reset();
+  
 }
 
-// Fetch Request
+/** Fetch Request */
 
 function getRecipe() {
   fetch("http://localhost:3000/Recipes")
@@ -122,10 +126,8 @@ function getRecipe() {
 }
 function init() {
   getRecipe();
-  recipeForm.addEventListener("submit", createRecipe);
 }
 init();
-
 
 
 
