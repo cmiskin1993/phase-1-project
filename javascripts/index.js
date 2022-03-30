@@ -7,9 +7,9 @@ const chooseMealLink = () => document.getElementById('choose-meal-link');
 
 /** Templates */
 const homePageTemplate = () => {
-    return ` <div class="image">
-    <img class="image__img" src=Images/AdobeStock_93020879.png alt= food >
-    <div class="image__overlay" >
+    return ` <div class="header-img">
+    <img class="food-img" src=Images/AdobeStock_93020879.png alt= food >
+    <div class="food-img__overlay" >
         <div class="image__title"></div>
         <h1 class="image__description">
             We take the stress <br> out of cooking
@@ -17,7 +17,7 @@ const homePageTemplate = () => {
 }
 const recipesTemplate = () => {
     return `<h2>My Recipes</h2> 
-    <div id="recipe-container">
+    <div id="recipe-form-container">
     <form id="recipe-form">
       <label><strong>Meal: </strong></label>
       <input type="text" id="meal-input" />
@@ -26,9 +26,8 @@ const recipesTemplate = () => {
       <input type="submit" value="Submit" />
     </form>
   </div>
-  <div id="recipe-container"></div>
-  <div id="comments-form"></div>
-  <div id="collection-comments"></div>`
+  <div id="recipe-container"></div>`
+    
 }
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
@@ -79,15 +78,15 @@ const recipeForm = document.getElementById("recipe-form");
 
 function renderRecipe(recipes) {
   const recipeCard = document.createElement("div");
-  recipeCard.id = `${recipes.id}`;
+  recipeCard.id = `meal${recipes.id}`;
   recipeCard.className = "recipe-card";
 
   const recipeImg = document.createElement("img");
-  recipeImg.src = recipes.image;
-  recipeImg.alt = `${recipes.name} image`;
+  recipeImg.src = recipes.img;
+  recipeImg.alt = `${recipes.meal}image`;
 
   const recipeName = document.createElement("h3");
-  recipeName.textContent = recipes.name;
+  recipeName.textContent = recipes.meal;
 
 
   recipeCard.append(recipeImg, recipeName);
@@ -96,14 +95,14 @@ function renderRecipe(recipes) {
 
 function createRecipe(event) {
   event.preventDefault();
-  const meal = document.querySelector("#meal-input").value;
-  const img = event.target.querySelector("#img-input").value
+  const meal = document.querySelector("#name-input").value;
+  const img = event.target.querySelector("#img-input").value;
 
   const recipe = {
     meal: meal,
     img: img,
-    id: 1, 
   };
+
   renderRecipe(recipe);
   recipeForm.reset();
 }

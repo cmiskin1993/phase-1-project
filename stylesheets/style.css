@@ -47,29 +47,23 @@ h1{
     font-family: "Champagne & Limousines";
     text-align: left;
     margin: 100px;
-    font-size: 90px;
+    font-size: 80px;
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
-.image{
-    position: relative;
+.header-img{
     width: 100%;
-    height: 100px;
+    height: 100%;
 }
-.image__img{
+.food-img{
     display: block;
     width: 100%;
 }
-.image__overlay{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: left;
+.food-img__overlay{
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
 }
 
 /*Page Headers*/
@@ -82,80 +76,101 @@ h2{
     text-decoration: none;
 }
 
-/*CARDS*/
+
+  /* Style Recipe Cards */
+
 h3{
     font-family: "Champagne & Limousines";
     font-weight: bold;
-}
+} 
 
+.recipe-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+}  
+.recipe-card:hover {
+    box-shadow: 0 8px 16px 0 rgb(187, 12, 158, 0.685);
+}
 .column {
     float: left;
     width: 25%;
     padding: 0 10px;
     margin-left: 70px;
     margin-bottom: 20px;
+}  
+.row {
+    margin: 0 -5px;
 }
-  
-  /* Remove extra left and right margins, due to padding */
-  .row {
-      margin: 0 -5px;
-}
-  
-  /* Clear floats after the columns */
-  .row:after {
-      
+.row:after { 
     content: "";
     display: table;
     clear: both;
 }
-  
-  /* Responsive columns */
-  @media screen and (max-width: 600px) {
+
+
+@media screen and (max-width: 600px) {
     .column {
       width: 100%;
       display: block;
     }
 }
+img {
+    width:100%;
+}
+ /* FORM */
+#recipe-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
   
-  /* Style the counter cards */
-  .card2 {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center;
-    background-color: #f1f1f1;
+  input[type="text"]:not(.edit-input) { 
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    padding: 12px 20px;
+    margin: 8px 0;
 }
-.card2:hover:hover {
-    box-shadow: 0 8px 16px 0 rgba(65, 4, 145, 0.247);
-}
+  input[type="submit"] {
+    border: 3px solid;
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgb(65, 4, 145);
+    color: rgb(65, 4, 145);
+    padding: 14px 20px;
+    margin: 8px 0;
+    margin-left: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background: linear-gradient(to bottom right, rgb(65, 4, 145), rgb(187, 12, 158));
+    color: white;
+  }
+   
+  #recipe-form-container {
+    font-family: "Champagne & Limousines";
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+  }
 
-/* Meal Button*/
+/* Get Meal Button*/
 .button {
     font-family: "Champagne & Limousines";
     font-weight: bold;
-    border: 2px solid black;
-    background-color: white;
-    color: black;
+    border: 3px solid;
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgb(65, 4, 145);
+    color: rgb(65, 4, 145);
     padding: 14px 28px;
     border-radius: 30px;
     font-size: 20px;
     cursor: pointer;
 }
-  .button {
-    border-color: rgb(65, 4, 145);
-    color: rgb(65, 4, 145);
-}
-  .button:hover {
+.button:hover {
     background: linear-gradient(to bottom right, rgb(65, 4, 145), rgb(187, 12, 158));
     color: white;
-  }
-  
-
-
-/* footer */
-/* #footer{
-    position: relative;
-    height: 100px;
-    margin-top: -100px;
-    clear: both;
-    text-align: center;
-} */
+}
