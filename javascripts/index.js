@@ -32,6 +32,7 @@ const recipesTemplate = () => {
   <div id="recipe-container"></div>`
     
 }
+
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
     <button  onclick="button()" class="button">Get My Meal</button>`
@@ -43,7 +44,7 @@ const renderHomePage = () => {
 }
 const renderRecipesPage = () => {
     mainDiv().innerHTML = recipesTemplate();
-    recipeForm.addEventListener("submit", createRecipe); 
+    recipeForm().addEventListener("submit", createRecipe);
 
 }
 const renderChooseMeal = () => {
@@ -90,23 +91,23 @@ function renderRecipe(recipes) {
 
   const recipeName = document.createElement("h3");
   recipeName.textContent = recipes.meal;
-
-
+  
   recipeCard.append(recipeImg, recipeName);
   recipeContainer().appendChild(recipes);
 }
+
 
 function createRecipe(event) {
   event.preventDefault();
   const meal = document.querySelector("#name-input").value;
   const img = event.target.querySelector("#img-input").value;
 
-  const recipe = {
+  const newRecipe = {
     meal: meal,
     img: img,
   };
 
-  renderRecipe(recipe);
+  renderRecipe(newRecipe);
   recipeForm.reset();
   
 }
