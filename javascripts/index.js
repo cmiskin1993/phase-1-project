@@ -45,6 +45,7 @@ const renderHomePage = () => {
 const renderRecipesPage = () => {
     mainDiv().innerHTML = recipesTemplate();
     recipeForm().addEventListener("submit", createRecipe);
+    getRecipe();
 
 }
 const renderChooseMeal = () => {
@@ -126,7 +127,6 @@ function getRecipe() {
     });
 }
 function init() {
-  getRecipe();
 }
 init();
 
