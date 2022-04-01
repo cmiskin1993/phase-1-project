@@ -101,7 +101,7 @@ function renderRecipe(recipes) {
   recipeName.textContent = recipes.meal;
   
   recipeCard.append(recipeImg, recipeName);
-  recipeContainer().appendChild(recipeCard);
+  recipeContainer().appendChild(recipeCard, randomRecipe);
 }
 function createRecipe(event) {
   event.preventDefault();
