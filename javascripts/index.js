@@ -23,7 +23,7 @@ const recipesTemplate = () => {
     <div id="recipe-form-container">
     <form id="recipe-form">
       <label><strong>Meal: </strong></label>
-      <input type="text" id="meal-input" />
+      <input type="text" id="name-input" />
       <label><strong>Image: </strong></label>
       <input type="text" id="img-input" />
       <input type="submit" value="Submit" />
@@ -35,7 +35,7 @@ const recipesTemplate = () => {
 
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
-    <button  onclick="button()" class="button">Get My Meal</button>`
+    <button  onclick="handleClick()" class="button">Get My Meal</button>`
 }
 
 /** Renderers */
@@ -74,8 +74,15 @@ const chooseMealLinkEvent = () => {
     })
 }
 
-const button = () => {
-  document.getElementById("button");
+const handleClick = () => {
+fetch("http://localhost:3000/Recipes")
+.then(function (response) {
+  return response.json();
+})
+.then(function (recipeArray) {
+  const randomRecipe = recipeArray [Math.floor(Math.random()*recipeArray.length)];
+  renderRecipe(randomRecipe);
+});
 }
 
 
@@ -94,10 +101,8 @@ function renderRecipe(recipes) {
   recipeName.textContent = recipes.meal;
   
   recipeCard.append(recipeImg, recipeName);
-  recipeContainer().appendChild(recipes);
+  recipeContainer().appendChild(recipeCard);
 }
-
-
 function createRecipe(event) {
   event.preventDefault();
   const meal = document.querySelector("#name-input").value;
@@ -107,10 +112,8 @@ function createRecipe(event) {
     meal: meal,
     img: img,
   };
-
   renderRecipe(newRecipe);
-  recipeForm.reset();
-  
+  recipeForm().reset(); 
 }
 
 /** Fetch Request */
@@ -121,6 +124,7 @@ function getRecipe() {
       return response.json();
     })
     .then(function (recipeArray) {
+      console.log(recipeArray)
       recipeArray.forEach(function (recipe) {
         renderRecipe(recipe);
       });
