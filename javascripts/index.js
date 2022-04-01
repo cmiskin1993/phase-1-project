@@ -7,7 +7,6 @@ const chooseMealLink = () => document.getElementById('choose-meal-link');
 const recipeForm = () => document.getElementById('recipe-form');
 const recipeContainer = () => document.getElementById('recipe-container');
 
-
 /** Templates */
 const homePageTemplate = () => {
     return ` <div class="header-img">
@@ -29,13 +28,13 @@ const recipesTemplate = () => {
       <input type="submit" value="Submit" />
     </form>
   </div>
-  <div id="recipe-container"></div>`
-    
+  <div id="recipe-container"></div>`   
 }
 
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
-    <button  onclick="handleClick()" class="button">Get My Meal</button>`
+    <button  onclick="handleClick()" class="button">Get My Meal</button>
+    <div id="recipe-container"></div>`
 }
 
 /** Renderers */
@@ -52,9 +51,7 @@ const renderChooseMeal = () => {
     mainDiv().innerHTML = chooseMealTemplate();
 }
 
-
 /** EVENTS */
-
 const homePageLinkEvent = () => {
     homePageLink ().addEventListener('click', (e) => {
         e.preventDefault();
@@ -73,7 +70,6 @@ const chooseMealLinkEvent = () => {
         renderChooseMeal();
     })
 }
-
 const handleClick = () => {
 fetch("http://localhost:3000/Recipes")
 .then(function (response) {
@@ -85,9 +81,7 @@ fetch("http://localhost:3000/Recipes")
 });
 }
 
-
 /** FORM */
-
 function renderRecipe(recipes) {
   const recipeCard = document.createElement("div");
   recipeCard.id = `meal${recipes.id}`;
@@ -101,7 +95,7 @@ function renderRecipe(recipes) {
   recipeName.textContent = recipes.meal;
   
   recipeCard.append(recipeImg, recipeName);
-  recipeContainer().appendChild(recipeCard, randomRecipe);
+  recipeContainer().appendChild(recipeCard);
 }
 function createRecipe(event) {
   event.preventDefault();
@@ -117,7 +111,6 @@ function createRecipe(event) {
 }
 
 /** Fetch Request */
-
 function getRecipe() {
   fetch("http://localhost:3000/Recipes")
     .then(function (response) {
@@ -134,20 +127,7 @@ function init() {
 }
 init();
 
-
-
-/**************/
-
-
-
-
-
-
-
-
-
 /** When the DOM Loads */
-
 document.addEventListener('DOMContentLoaded', () => {
     renderHomePage();
     homePageLinkEvent();
