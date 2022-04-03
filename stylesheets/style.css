@@ -76,14 +76,23 @@ h2{
     text-decoration: none;
 }
 
-
   /* Style Recipe Cards */
-
 h3{
     font-family: "Champagne & Limousines";
     font-weight: bold;
+    font-size: 25px;
 } 
-
+img {
+    height: 80%;
+    width: 80%;
+}
+#recipe-container {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   grid-auto-rows: auto;
+   grid-gap: 1rem;
+   margin: 80px;
+}
 .recipe-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
@@ -93,37 +102,8 @@ h3{
 .recipe-card:hover {
     box-shadow: 0 8px 16px 0 rgb(187, 12, 158, 0.685);
 }
-.column {
-    float: left;
-    width: 25%;
-    padding: 0 10px;
-    margin-left: 70px;
-    margin-bottom: 20px;
-}  
-.row {
-    margin: 0 -5px;
-}
-.row:after { 
-    content: "";
-    display: table;
-    clear: both;
-}
-@media screen and (max-width: 600px) {
-    .column {
-      width: 100%;
-      display: block;
-    }
-}
-img {
-    width:100%;
-}
+
  /* FORM */
-#recipe-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-  
   input[type="text"]:not(.edit-input) { 
     padding: 10px;
     border: 0;

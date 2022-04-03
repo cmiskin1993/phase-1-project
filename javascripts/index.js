@@ -10,10 +10,10 @@ const recipeContainer = () => document.getElementById('recipe-container');
 /** Templates */
 const homePageTemplate = () => {
     return ` <div class="header-img">
-    <img class="food-img" src=Images/AdobeStock_93020879.png alt= food >
+    <img class="food-img" src=Images/AdobeStock_93020879.png alt=food  >
     <div class="food-img__overlay" >
-        <div class="image__title"></div>
-        <h1 class="image__description">
+        <div class="image__title"  ></div>
+    <h1 class="image__description" >
             We take the stress <br> out of cooking
             </h1> `
 }

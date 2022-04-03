@@ -19,6 +19,11 @@
             "id": 4,
             "meal": "Cauliflower Pizza",
             "img": "Images/delish-191908-cauliflower-pizza-0390-landscape-pf-1568654348.jpg"
+        },
+        {
+            "id": 5,
+            "meal": "Butternut Squash Soup",
+            "img": "Images/Roasted-Butternut-Squash-Soup-1-2.jpg"
         }
     ]
 }
