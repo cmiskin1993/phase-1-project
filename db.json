@@ -3,27 +3,32 @@
         {
             "id": 1,
             "meal": "Fish Tacos",
-            "img": "Images/190307-fish-tacos-112-1553283299.jpg"
+            "img": "Images/190307-fish-tacos-112-1553283299.jpg",
+            "likes": 0
         },
         {
             "id": 2,
             "meal": "Harvest Bowl",
-            "img": "Images/Harvest-Bowl-5.jpg"
+            "img": "Images/Harvest-Bowl-5.jpg",
+            "likes": 0
         },
         {
             "id": 3,
             "meal": "Acai Bowl",
-            "img": "Images/acai-smoothie-recipe-homemade-acai-bowl.jpg"
+            "img": "Images/acai-smoothie-recipe-homemade-acai-bowl.jpg",
+            "likes": 0
         },
         {
             "id": 4,
             "meal": "Cauliflower Pizza",
-            "img": "Images/delish-191908-cauliflower-pizza-0390-landscape-pf-1568654348.jpg"
+            "img": "Images/delish-191908-cauliflower-pizza-0390-landscape-pf-1568654348.jpg",
+            "likes": 0
         },
         {
             "id": 5,
             "meal": "Butternut Squash Soup",
-            "img": "Images/Roasted-Butternut-Squash-Soup-1-2.jpg"
+            "img": "Images/Roasted-Butternut-Squash-Soup-1-2.jpg",
+            "likes": 0
         }
     ]
 }

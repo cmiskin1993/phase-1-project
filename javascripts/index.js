@@ -22,7 +22,7 @@ const recipesTemplate = () => {
     <div id="recipe-form-container">
     <form id="recipe-form">
       <label><strong>Meal: </strong></label>
-      <input type="text" id="name-input" />
+      <input type="text" id="meal-input" />
       <label><strong>Image: </strong></label>
       <input type="text" id="img-input" />
       <input type="submit" value="Submit" />
@@ -78,6 +78,7 @@ fetch("http://localhost:3000/Recipes")
 .then(function (recipeArray) {
   const randomRecipe = recipeArray [Math.floor(Math.random()*recipeArray.length)];
   renderRecipe(randomRecipe);
+  
 });
 }
 
@@ -93,18 +94,38 @@ function renderRecipe(recipes) {
 
   const recipeName = document.createElement("h3");
   recipeName.textContent = recipes.meal;
+
+  const recipeLikes = document.createElement("h3");
+  recipeLikes.textContent = " ";
+
+  const likesNum = document.createElement("h5");
+  likesNum.className = "like-num";
+  likesNum.textContent = recipes.likes;
+
+  const likeBttn = document.createElement("button");
+  likeBttn.className = "like-bttn";
+  likeBttn.textContent = "💗";
+  likeBttn.addEventListener("click", () => increaseLikes(recipes, likesNum));
   
-  recipeCard.append(recipeImg, recipeName);
+  recipeCard.append(recipeImg, recipeName,recipeLikes, likesNum, likeBttn);
   recipeContainer().appendChild(recipeCard);
 }
+
+function increaseLikes(recipes, likesNum) {
+  ++recipes.likes;
+  likesNum.textContent = recipes.likes;
+}
+
 function createRecipe(event) {
   event.preventDefault();
-  const meal = document.querySelector("#name-input").value;
+  const meal = document.querySelector("#meal-input").value;
   const img = event.target.querySelector("#img-input").value;
 
   const newRecipe = {
     meal: meal,
     img: img,
+    likes: 0,
+
   };
   renderRecipe(newRecipe);
   recipeForm().reset(); 
@@ -117,7 +138,6 @@ function getRecipe() {
       return response.json();
     })
     .then(function (recipeArray) {
-      console.log(recipeArray)
       recipeArray.forEach(function (recipe) {
         renderRecipe(recipe);
       });
