@@ -29,6 +29,18 @@
             "meal": "Butternut Squash Soup",
             "img": "Images/Roasted-Butternut-Squash-Soup-1-2.jpg",
             "likes": 0
+        },
+        {
+            "id": 6,
+            "meal": "Buffalo Wings",
+            "img": "Images/classic-buffalo-wings-horizontal-279-1547506077.jpg",
+            "likes": 0
+        },
+        {
+            "id": 7,
+            "meal": "Salad",
+            "img": "Images/HMONG-Potluck-Chopped-Salad.jpg",
+            "likes": 0
         }
     ]
 }
