@@ -34,6 +34,7 @@ const recipesTemplate = () => {
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
     <button  onclick="handleClick()" class="button">Get My Meal</button>
+
     <div id="recipe-container"></div>`
 }
 
@@ -76,9 +77,8 @@ fetch("http://localhost:3000/Recipes")
   return response.json();
 })
 .then(function (recipeArray) {
-  const randomRecipe = recipeArray [Math.floor(Math.random()*recipeArray.length)];
+  const randomRecipe = recipeArray[Math.floor(Math.random()*recipeArray.length)];
   renderRecipe(randomRecipe);
-  
 });
 }
 
