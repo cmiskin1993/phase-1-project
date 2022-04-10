@@ -35,7 +35,7 @@ const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
     <button  onclick="handleClick()" class="button">Get My Meal</button>
 
-    <div id="recipe-container"></div>`
+    <div id="mealContainer"></div>`
 }
 
 /** Renderers */
@@ -72,15 +72,24 @@ const chooseMealLinkEvent = () => {
     })
 }
 const handleClick = () => {
-fetch("http://localhost:3000/Recipes")
-.then(function (response) {
-  return response.json();
-})
-.then(function (recipeArray) {
-  const randomRecipe = recipeArray[Math.floor(Math.random()*recipeArray.length)];
-  renderRecipe(randomRecipe);
-});
-}
+fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+.then(res => res.json())
+.then(res => {
+  createMeal(res.meals[0]);
+  });
+};
+function createMeal(meal){
+  mealContainer.innerHTML = `
+  <div class="row">
+    <div class "colum five" id="meal">
+        <img src="${meal.strMealThumb}" alt= "Meal Img" />
+        <p> ${meal.strMeal}</p>
+      </div>
+    </div>
+  `
+  
+};
+
 
 /** FORM */
 function renderRecipe(recipes) {
