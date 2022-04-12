@@ -6,6 +6,7 @@ Full Belly is a digital cookbook where you can store recipe cards. And its uniqu
 
 ### Requirements
 * Install JSON server on your computer if not installed already
+* Run JSON server
 * Download fonts
 
 ### How to install / use
