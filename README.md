@@ -2,7 +2,7 @@
 Carrie Nestel (Miskin) phase 1 project 
 
 ### Overview
-This is to detail the project from a user perspective.
+Full Belly is a digital cookbook where you can store recipe cards. And its unique quality is the recipe generator that provides a different recipes card everytime you click the button. So it is helpful on days you didn’t know what to make.
 
 ### Requirements
 * Install JSON server on your computer if not installed already
@@ -12,9 +12,6 @@ This is to detail the project from a user perspective.
 * Fork and clone repository into your own GitHub
 * Run json-server --watch db.json to start the server
 * Open index.html in the browser
-
-### How to contribute
-If this is an open source project, how can others make contributions
 
 
 
