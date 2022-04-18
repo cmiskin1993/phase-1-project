@@ -196,8 +196,17 @@ h5{
  #meal:hover{
     box-shadow: 0 8px 16px 0 rgb(187, 12, 158, 0.685);
  }
-  p {
+p {
     font-family: "Champagne & Limousines";
-    font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
+}
+footer{
+    position: relative;
+    left: 0;
+    top: 10px;
+    bottom: 0;
+    width: 100%;
+    clear: both;
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif
 }

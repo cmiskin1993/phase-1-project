@@ -1,3 +1,10 @@
+/** When the DOM Loads */
+document.addEventListener('DOMContentLoaded', () => {
+  renderHomePage();
+  homePageLinkEvent();
+  recipesLinkEvent();
+  chooseMealLinkEvent();
+})
 
 /** NODE Getters */
 const mainDiv = () => document.getElementById('main');
@@ -30,7 +37,6 @@ const recipesTemplate = () => {
   </div>
   <div id="recipe-container"></div>`   
 }
-
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
     <button  onclick="handleClick()" class="button">Get My Meal</button>
@@ -46,7 +52,7 @@ const renderRecipesPage = () => {
     mainDiv().innerHTML = recipesTemplate();
     recipeForm().addEventListener("submit", createRecipe);
     getRecipe();
-
+    addToPage();
 }
 const renderChooseMeal = () => {
     mainDiv().innerHTML = chooseMealTemplate();
@@ -54,42 +60,20 @@ const renderChooseMeal = () => {
 
 /** EVENTS */
 const homePageLinkEvent = () => {
-    homePageLink ().addEventListener('click', (e) => {
-        e.preventDefault();
+    homePageLink ().addEventListener('click', () => {
         renderHomePage();
     })
 }
 const recipesLinkEvent = () => {
-    recipesLink ().addEventListener('click', (e) => {
-        e.preventDefault
+    recipesLink ().addEventListener('click', () => {
         renderRecipesPage();
     })
 }
 const chooseMealLinkEvent = () => {
-    chooseMealLink ().addEventListener('click', (e) => {
-        e.preventDefault
+    chooseMealLink ().addEventListener('click', () => {
         renderChooseMeal();
     })
 }
-const handleClick = () => {
-fetch("https://www.themealdb.com/api/json/v1/1/random.php")
-.then(res => res.json())
-.then(res => {
-  createMeal(res.meals[0]);
-  });
-};
-function createMeal(meal){
-  mealContainer.innerHTML = `
-  <div class="row">
-    <div class "colum five" id="meal">
-        <img src="${meal.strMealThumb}" alt= "Meal Img" />
-        <p> ${meal.strMeal}</p>
-      </div>
-    </div>
-  `
-  
-};
-
 
 /** FORM */
 function renderRecipe(recipes) {
@@ -105,7 +89,7 @@ function renderRecipe(recipes) {
   recipeName.textContent = recipes.meal;
 
   const recipeLikes = document.createElement("h3");
-  recipeLikes.textContent = " ";
+  recipeLikes.textContent = "";
 
   const likesNum = document.createElement("h5");
   likesNum.className = "like-num";
@@ -115,7 +99,7 @@ function renderRecipe(recipes) {
   likeBttn.className = "like-bttn";
   likeBttn.textContent = "💗";
   likeBttn.addEventListener("click", () => increaseLikes(recipes, likesNum));
-  
+
   recipeCard.append(recipeImg, recipeName,recipeLikes, likesNum, likeBttn);
   recipeContainer().appendChild(recipeCard);
 }
@@ -134,13 +118,13 @@ function createRecipe(event) {
     meal: meal,
     img: img,
     likes: 0,
-
   };
+
   renderRecipe(newRecipe);
   recipeForm().reset(); 
 }
 
-/** Fetch Request */
+/** Get Request */
 function getRecipe() {
   fetch("http://localhost:3000/Recipes")
     .then(function (response) {
@@ -152,15 +136,25 @@ function getRecipe() {
       });
     });
 }
-function init() {
+function addToPage() {
 }
-init();
 
-/** When the DOM Loads */
-document.addEventListener('DOMContentLoaded', () => {
-    renderHomePage();
-    homePageLinkEvent();
-    recipesLinkEvent();
-    chooseMealLinkEvent();
-})
+
+/** Connect to API */
+const handleClick = () => {
+  fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+  .then(res => res.json())
+  .then(data => {
+    createMealCard(data.meals[0]);
+    });
+  };
+  function createMealCard(meal){
+    mealContainer.innerHTML = `
+      <div id="meal">
+          <img src="${meal.strMealThumb}" alt= "Meal Img" />
+          <h3> ${meal.strMeal}</h3>
+          <p> Category: ${meal.strCategory}</p>
+      </div>
+    ` 
+  };
 
