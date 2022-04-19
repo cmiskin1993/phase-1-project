@@ -75,37 +75,37 @@ const chooseMealLinkEvent = () => {
 }
 
 /** FORM */
-function renderRecipe(recipes) {
+function renderRecipe(recipe) {
   const recipeCard = document.createElement("div");
-  recipeCard.id = `meal${recipes.id}`;
+  recipeCard.id = `meal${recipe.id}`;
   recipeCard.className = "recipe-card";
 
   const recipeImg = document.createElement("img");
-  recipeImg.src = recipes.img;
-  recipeImg.alt = `${recipes.meal}image`;
+  recipeImg.src = recipe.img;
+  recipeImg.alt = `${recipe.meal}image`;
 
   const recipeName = document.createElement("h3");
-  recipeName.textContent = recipes.meal;
+  recipeName.textContent = recipe.meal;
 
   const recipeLikes = document.createElement("h3");
   recipeLikes.textContent = "";
 
   const likesNum = document.createElement("h5");
   likesNum.className = "like-num";
-  likesNum.textContent = recipes.likes;
+  likesNum.textContent = recipe.likes;
 
   const likeBttn = document.createElement("button");
   likeBttn.className = "like-bttn";
   likeBttn.textContent = "💗";
-  likeBttn.addEventListener("click", () => increaseLikes(recipes, likesNum));
+  likeBttn.addEventListener("click", () => increaseLikes(recipe, likesNum));
 
   recipeCard.append(recipeImg, recipeName,recipeLikes, likesNum, likeBttn);
   recipeContainer().appendChild(recipeCard);
 }
 
-function increaseLikes(recipes, likesNum) {
-  ++recipes.likes;
-  likesNum.textContent = recipes.likes;
+function increaseLikes(recipe, likesNum) {
+  ++recipe.likes;
+  likesNum.textContent = recipe.likes;
 }
 
 function createRecipe(event) {
@@ -144,15 +144,16 @@ const handleClick = () => {
   fetch("https://www.themealdb.com/api/json/v1/1/random.php")
   .then(res => res.json())
   .then(data => {
+      /**Error handling for keys */
     createMealCard(data.meals[0]);
     });
   };
-  function createMealCard(meal){
+  function createMealCard(meals){
     mealContainer.innerHTML = `
       <div id="meal">
-          <img src="${meal.strMealThumb}" alt= "Meal Img" />
-          <h3> ${meal.strMeal}</h3>
-          <p> Category: ${meal.strCategory}</p>
+          <img src="${meals.strMealThumb}" alt= "Meal Img" />
+          <h3> ${meals.strMeal}</h3>
+          <p> Category: ${meals.strCategory}</p>
       </div>
     ` 
   };
