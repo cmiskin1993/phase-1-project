@@ -40,7 +40,6 @@ const recipesTemplate = () => {
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
     <button  onclick="handleClick()" class="button">Get My Meal</button>
-
     <div id="mealContainer"></div>`
 }
 
@@ -157,4 +156,3 @@ const handleClick = () => {
       </div>
     ` 
   };
-
