@@ -16,6 +16,8 @@ const recipeContainer = () => document.getElementById('recipe-container');
 
 /** Templates */
 const homePageTemplate = () => {
+
+
     return ` <div class="header-img">
     <img class="food-img" src=Images/AdobeStock_93020879.png alt=food  >
     <div class="food-img__overlay" >
@@ -24,7 +26,7 @@ const homePageTemplate = () => {
             We take the stress <br> out of cooking
             </h1> `
 }
-const recipesTemplate = () => {
+const recipeTemplate = () => {
     return `<h2>My Recipes</h2> 
     <div id="recipe-form-container">
     <form id="recipe-form">
@@ -48,9 +50,9 @@ const renderHomePage = () => {
     mainDiv().innerHTML = homePageTemplate();
 }
 const renderRecipesPage = () => {
-    mainDiv().innerHTML = recipesTemplate();
+    mainDiv().innerHTML = recipeTemplate();
     recipeForm().addEventListener("submit", createRecipe);
-    getRecipe();
+    getRecipes();
     addToPage();
 }
 const renderChooseMeal = () => {
@@ -97,46 +99,80 @@ function renderRecipe(recipe) {
   const likeBttn = document.createElement("button");
   likeBttn.className = "like-bttn";
   likeBttn.textContent = "💗";
-  likeBttn.addEventListener("click", () => increaseLikes(recipe, likesNum));
+  likeBttn.addEventListener("click", (e) => increaseLikes(e, recipe, likesNum));
 
-  recipeCard.append(recipeImg, recipeName,recipeLikes, likesNum, likeBttn);
+  recipeCard.append(recipeImg, recipeName, recipeLikes, likesNum, likeBttn);
   recipeContainer().appendChild(recipeCard);
-}
-
-function increaseLikes(recipe, likesNum) {
-  ++recipe.likes;
-  likesNum.textContent = recipe.likes;
-}
+  }
 
 function createRecipe(event) {
   event.preventDefault();
   const meal = document.querySelector("#meal-input").value;
   const img = event.target.querySelector("#img-input").value;
 
-  const newRecipe = {
+  const recipe = {
     meal: meal,
     img: img,
     likes: 0,
   };
 
-  renderRecipe(newRecipe);
-  recipeForm().reset(); 
-}
 
 /** Get Request */
-function getRecipe() {
-  fetch("http://localhost:3000/Recipes")
-    .then(function (response) {
+
+  const configObj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(recipe),
+  };
+
+  fetch("http://localhost:3000/Recipes", configObj)
+    .then(resp => {
+      return resp.json();
+    })
+    .then(function (recipe) {
+      renderRecipe(recipe);
+    });
+    recipeForm().reset(); 
+}
+
+function getRecipes() {
+  fetch("http://localhost:3000/recipes")
+  .then(response => {
       return response.json();
     })
-    .then(function (recipeArray) {
-      recipeArray.forEach(function (recipe) {
+    .then(recipeArray => {
+      recipeArray.forEach(recipe => {
         renderRecipe(recipe);
       });
     });
-}
+  }
+
+  const increaseLikes = (e, recipe, likesNum) => {
+    e.stopPropagation();
+
+    ++recipe.likes;
+
+    const configObj = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({likes: recipe.likes})
+    }
+
+    fetch(`http://localhost:3000/recipes/${recipe.id}`, configObj)
+    likesNum.textContent = recipe.likes;
+    };
+
+
 function addToPage() {
 }
+function init() {
+}
+init();
 
 
 /** Connect to API */

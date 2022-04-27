@@ -1,51 +1,46 @@
-
 {
-    "Recipes": [
-        {
-            "id": 1,
-            "meal": "Fish Tacos",
-            "img": "Images/190307-fish-tacos-112-1553283299.jpg",
-            "likes": 0
-        },
-        {
-            "id": 2,
-            "meal": "Harvest Bowl",
-            "img": "Images/Harvest-Bowl-5.jpg",
-            "likes": 0
-        },
-        {
-            "id": 3,
-            "meal": "Acai Bowl",
-            "img": "Images/acai-smoothie-recipe-homemade-acai-bowl.jpg",
-            "likes": 0
-        },
-        {
-            "id": 4,
-            "meal": "Cauliflower Pizza",
-            "img": "Images/delish-191908-cauliflower-pizza-0390-landscape-pf-1568654348.jpg",
-            "likes": 0
-        },
-        {
-            "id": 5,
-            "meal": "Butternut Squash Soup",
-            "img": "Images/Roasted-Butternut-Squash-Soup-1-2.jpg",
-            "likes": 0
-        },
-        {
-            "id": 6,
-            "meal": "Buffalo Wings",
-            "img": "Images/classic-buffalo-wings-horizontal-279-1547506077.jpg",
-            "likes": 0
-        },
-        {
-            "id": 7,
-            "meal": "Salad",
-            "img": "Images/HMONG-Potluck-Chopped-Salad.jpg",
-            "likes": 0
-        }
-    ]
+  "recipes": [
+    {
+      "id": 1,
+      "meal": "Fish Tacos",
+      "img": "Images/190307-fish-tacos-112-1553283299.jpg",
+      "likes": 0
+    },
+    {
+      "id": 2,
+      "meal": "Harvest Bowl",
+      "img": "Images/Harvest-Bowl-5.jpg",
+      "likes": 0
+    },
+    {
+      "id": 3,
+      "meal": "Acai Bowl",
+      "img": "Images/acai-smoothie-recipe-homemade-acai-bowl.jpg",
+      "likes": 0
+    },
+    {
+      "id": 4,
+      "meal": "Cauliflower Pizza",
+      "img": "Images/delish-191908-cauliflower-pizza-0390-landscape-pf-1568654348.jpg",
+      "likes": 0
+    },
+    {
+      "id": 5,
+      "meal": "Butternut Squash Soup",
+      "img": "Images/Roasted-Butternut-Squash-Soup-1-2.jpg",
+      "likes": 0
+    },
+    {
+      "id": 6,
+      "meal": "Buffalo Wings",
+      "img": "Images/classic-buffalo-wings-horizontal-279-1547506077.jpg",
+      "likes": 0
+    },
+    {
+      "id": 7,
+      "meal": "Salad",
+      "img": "Images/HMONG-Potluck-Chopped-Salad.jpg",
+      "likes": 0
+    }
+  ]
 }
-
-
-
-
