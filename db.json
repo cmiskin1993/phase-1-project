@@ -28,7 +28,7 @@
       "id": 5,
       "meal": "Butternut Squash Soup",
       "img": "Images/Roasted-Butternut-Squash-Soup-1-2.jpg",
-      "likes": 0
+      "likes": 2
     },
     {
       "id": 6,
@@ -40,7 +40,13 @@
       "id": 7,
       "meal": "Salad",
       "img": "Images/HMONG-Potluck-Chopped-Salad.jpg",
-      "likes": 0
+      "likes": 3
+    },
+    {
+      "meal": "Sandwich ",
+      "img": "https://insanelygoodrecipes.com/wp-content/uploads/2021/03/Homemade-Grilled-Cheese-Sandwich-with-Tomatoes.png",
+      "likes": 4,
+      "id": 8
     }
   ]
 }

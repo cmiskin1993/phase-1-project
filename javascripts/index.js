@@ -16,8 +16,6 @@ const recipeContainer = () => document.getElementById('recipe-container');
 
 /** Templates */
 const homePageTemplate = () => {
-
-
     return ` <div class="header-img">
     <img class="food-img" src=Images/AdobeStock_93020879.png alt=food  >
     <div class="food-img__overlay" >
@@ -42,7 +40,8 @@ const recipeTemplate = () => {
 const chooseMealTemplate = () => {
     return `<h2> Choose my meal for me <h2/>
     <button  onclick="handleClick()" class="button">Get My Meal</button>
-    <div id="mealContainer"></div>`
+    <div id="mealContainer"></div>
+    <div id="number">0</div>`
 }
 
 /** Renderers */
@@ -54,6 +53,7 @@ const renderRecipesPage = () => {
     recipeForm().addEventListener("submit", createRecipe);
     getRecipes();
     addToPage();
+    init();
 }
 const renderChooseMeal = () => {
     mainDiv().innerHTML = chooseMealTemplate();
@@ -61,17 +61,17 @@ const renderChooseMeal = () => {
 
 /** EVENTS */
 const homePageLinkEvent = () => {
-    homePageLink ().addEventListener('click', () => {
+    homePageLink().addEventListener('click', () => {
         renderHomePage();
     })
 }
 const recipesLinkEvent = () => {
-    recipesLink ().addEventListener('click', () => {
+    recipesLink().addEventListener('click', () => {
         renderRecipesPage();
     })
 }
 const chooseMealLinkEvent = () => {
-    chooseMealLink ().addEventListener('click', () => {
+    chooseMealLink().addEventListener('click', () => {
         renderChooseMeal();
     })
 }
@@ -104,7 +104,7 @@ function renderRecipe(recipe) {
   recipeCard.append(recipeImg, recipeName, recipeLikes, likesNum, likeBttn);
   recipeContainer().appendChild(recipeCard);
   }
-
+  
 function createRecipe(event) {
   event.preventDefault();
   const meal = document.querySelector("#meal-input").value;
@@ -115,8 +115,7 @@ function createRecipe(event) {
     img: img,
     likes: 0,
   };
-
-
+  
 /** Get Request */
 
   const configObj = {
@@ -127,13 +126,9 @@ function createRecipe(event) {
     body: JSON.stringify(recipe),
   };
 
-  fetch("http://localhost:3000/Recipes", configObj)
-    .then(resp => {
-      return resp.json();
-    })
-    .then(function (recipe) {
-      renderRecipe(recipe);
-    });
+  fetch("http://localhost:3000/recipes", configObj)
+    .then(resp => resp.json()) 
+    .then(recipe => renderRecipe(recipe))
     recipeForm().reset(); 
 }
 
@@ -167,16 +162,24 @@ function getRecipes() {
     likesNum.textContent = recipe.likes;
     };
 
-
 function addToPage() {
 }
 function init() {
 }
-init();
-
 
 /** Connect to API */
 const handleClick = () => {
+  let element = document.getElementById("number");
+  let value = element.innerHTML;
+  ++value
+  document.getElementById('number').innerHTML = value
+
+
+
+
+
+  
+  
   fetch("https://www.themealdb.com/api/json/v1/1/random.php")
   .then(res => res.json())
   .then(data => {
@@ -185,11 +188,29 @@ const handleClick = () => {
     });
   };
   function createMealCard(meals){
-    mealContainer.innerHTML = `
+    mealContainer.innerHTML = `  
+      
       <div id="meal">
           <img src="${meals.strMealThumb}" alt= "Meal Img" />
           <h3> ${meals.strMeal}</h3>
           <p> Category: ${meals.strCategory}</p>
-      </div>
-    ` 
+      </div>`
   };
+
+
+
+
+
+
+// NOTES for adding later
+  // <a href="${meals.strSource}">learn more </a> 
+
+  // <div>
+  // ${meals.strYoutube ? `
+  // <div class="row">
+  //   <h5>Video Recipe</h5>
+  //   <div class="videoWrapper">
+  //     <iframe width="420" height="315"
+  //     src="https://www.youtube.com/embed/${meals.strYoutube.slice(-11)}">
+  //     </iframe>
+  // </div>` : ''}`
